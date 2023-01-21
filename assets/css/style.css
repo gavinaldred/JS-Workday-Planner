@@ -75,7 +75,8 @@ textarea {
   text-align: center;
 }
 
-.clearBtn, .refreshBtn {
+.clearBtn,
+.refreshBtn {
   border-radius: 15px;
   background-color: black;
   color: white;
@@ -83,7 +84,8 @@ textarea {
   margin: 15px 5px;
 }
 
-.clearBtn:hover, .refreshBtn:hover {
+.clearBtn:hover,
+.refreshBtn:hover {
   color: black;
   background-color: white;
   border: #000000;
@@ -92,14 +94,12 @@ textarea {
 }
 
 .saveAllBtn {
-
-border-radius: 15px;
+  border-radius: 15px;
   background-color: black;
   color: white;
   font-size: 40px;
   margin: 15px 5px;
 }
-
 
 .saveAllBtn:hover {
   color: white;
