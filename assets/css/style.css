@@ -75,15 +75,33 @@ textarea {
   text-align: center;
 }
 
-.clearBtn {
+.clearBtn, .refreshBtn {
   border-radius: 15px;
   background-color: black;
   color: white;
   font-size: 40px;
-  margin: 15px 0;
+  margin: 15px 5px;
 }
 
-.clearBtn:hover {
+.clearBtn:hover, .refreshBtn:hover {
+  color: black;
+  background-color: white;
+  border: #000000;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.saveAllBtn {
+
+border-radius: 15px;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  margin: 15px 5px;
+}
+
+
+.saveAllBtn:hover {
   color: black;
   background-color: white;
   border: #000000;
