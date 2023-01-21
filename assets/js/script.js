@@ -4,8 +4,8 @@ $(document).ready(function () {
   
   $(".saveBtn").on("click", function () {
     // Get nearby values
-    var text = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id");
+    let text = $(this).siblings(".description").val();
+    let time = $(this).parent().attr("id");
     // Set items in local storage
     localStorage.setItem(time, text);
   });
@@ -32,8 +32,8 @@ $(document).ready(function () {
   hourSixteen.val(localStorage.getItem("hour16"));
   hourSeventeen.val(localStorage.getItem("hour17"));
   
-  for (var i = 8; i <= 17; i++) {
-    var timeBlock = `<div id="hour${i}" class="row time-block">
+  for (let i = 8; i <= 17; i++) {
+    const timeBlock = `<div id="hour${i}" class="row time-block">
                               <div class="col-md-1 hour">
                                   ${i}:00am
                               </div>
@@ -47,17 +47,17 @@ $(document).ready(function () {
   // Create a function to track the hour
   function hourTracker() {
     // Get the current number of hours
-    var currentHour = moment().hour();
+    let currentHour = moment().hour();
   
     $(".saveBtn").on("click", function () {
-      var text = $(this).siblings("textarea").val();
-      var hour = $(this).parent().attr("id");
+      let text = $(this).siblings("textarea").val();
+      let hour = $(this).parent().attr("id");
       localStorage.setItem(hour, text);
     });
 
     $(".time-block").each(function () {
-        var hour = $(this).attr("id");
-        var text = localStorage.getItem(hour);
+        let hour = $(this).attr("id");
+        let text = localStorage.getItem(hour);
         $(this).find("textarea").val(text);
       });
       
@@ -80,14 +80,14 @@ $(document).ready(function () {
     
     // Loop over time blocks
     $(".time-block").each(function () {
-      var blockHour = parseInt($(this).attr("id").replace("hour", ""));
+      let blockHour = parseInt($(this).attr("id").replace("hour", ""));
   
       // Check if we've moved past this time
       if (blockHour < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("future");
         $(this).removeClass("present");
-        var text = $(this).find("textarea").val();
+        let text = $(this).find("textarea").val();
         if (!text) {
           $(this).find("textarea").attr("disabled", "disabled");
           $(this)
@@ -105,5 +105,16 @@ $(document).ready(function () {
       }
     });
   }
+
+  $(".saveAllBtn").on("click", function () {
+    $(".time-block").each(function () {
+      let text = $(this).find("textarea").val();
+      let time = $(this).attr("id");
+      localStorage.setItem(time, text);
+    });
+  });
+
+  
+
   hourTracker(); // Re-run the function
   
