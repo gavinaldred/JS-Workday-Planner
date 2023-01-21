@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
-  });
+  }); // adds time and date to top of site using moment
   
   $(".saveBtn").on("click", function () {
     // Get nearby values
@@ -10,6 +10,7 @@ $(document).ready(function () {
     localStorage.setItem(time, text);
   });
   
+  // variables for planner time slots
   let hourEight = $("#hour8 .description");
   let hourNine = $("#hour9 .description");
   let hourTen = $("#hour10 .description");
@@ -21,6 +22,7 @@ $(document).ready(function () {
   let hourSixteen = $("#hour16 .description");
   let hourSeventeen = $("#hour17 .description");
   
+  //gets the value of time slots from local storage if page reloadeded and there are vlaues
   hourEight.val(localStorage.getItem("hour8"));
   hourNine.val(localStorage.getItem("hour9"));
   hourTen.val(localStorage.getItem("hour10"));
@@ -32,10 +34,11 @@ $(document).ready(function () {
   hourSixteen.val(localStorage.getItem("hour16"));
   hourSeventeen.val(localStorage.getItem("hour17"));
   
+  // adds the time slots to the html
   for (let i = 8; i <= 17; i++) {
     const timeBlock = `<div id="hour${i}" class="row time-block">
                               <div class="col-md-1 hour">
-                                  ${i}:00am
+                                  ${i}:00
                               </div>
                               <textarea class="col-md-10 description"></textarea>
                               <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
@@ -48,23 +51,24 @@ $(document).ready(function () {
   function hourTracker() {
     // Get the current number of hours
     let currentHour = moment().hour();
-  
+  // saves to local storage
     $(".saveBtn").on("click", function () {
       let text = $(this).siblings("textarea").val();
       let hour = $(this).parent().attr("id");
       localStorage.setItem(hour, text);
     });
-
+    // saves time to local storage by block id
     $(".time-block").each(function () {
         let hour = $(this).attr("id");
         let text = localStorage.getItem(hour);
         $(this).find("textarea").val(text);
       });
       
-  
+      // targets clear and refresh page buttons and runs functions on click
     $(".clearBtn").on("click", clearPage);
     $(".refreshBtn").on("click", refreshPage);
   
+    // clear page function // clears local storage and makes all blocks editable
     function clearPage() {
       localStorage.clear();
       $(".past")
@@ -74,6 +78,7 @@ $(document).ready(function () {
         .attr("placeholder", "");
     }
   
+    //reload the page
     function refreshPage() {
         location.reload();
     }
@@ -82,7 +87,7 @@ $(document).ready(function () {
     $(".time-block").each(function () {
       let blockHour = parseInt($(this).attr("id").replace("hour", ""));
   
-      // Check if we've moved past this time
+      // Check if we've moved past current time
       if (blockHour < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("future");
@@ -92,7 +97,7 @@ $(document).ready(function () {
           $(this).find("textarea").attr("disabled", "disabled");
           $(this)
             .find("textarea")
-            .attr("placeholder", "Time has passed. This block is non-editable.");
+            .attr("placeholder", "Time has passed. This block is non-editable."); // diables blocks when time is past
         }
       } else if (blockHour === currentHour) {
         $(this).removeClass("past");
@@ -105,7 +110,7 @@ $(document).ready(function () {
       }
     });
   }
-
+// function to save all rather than clicking each annoying save button
   $(".saveAllBtn").on("click", function () {
     $(".time-block").each(function () {
       let text = $(this).find("textarea").val();
