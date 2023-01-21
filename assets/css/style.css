@@ -107,3 +107,20 @@ border-radius: 15px;
   border-width: 5px;
   border-style: solid;
 }
+
+.col-md-1 {
+  padding-right: 0px !important;
+}
+
+textarea {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+}
+textarea::placeholder {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+}

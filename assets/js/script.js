@@ -36,15 +36,20 @@ $(document).ready(function () {
   
   // adds the time slots to the html
   for (let i = 8; i <= 17; i++) {
-    const timeBlock = `<div id="hour${i}" class="row time-block">
+    let am_pm = "am";
+    if (i > 11) {   // adds logic to add correct AM or PM to time of day block
+        am_pm = "pm";
+    }
+    let timeBlock = `<div id="hour${i}" class="row time-block">
                               <div class="col-md-1 hour">
-                                  ${i}:00
+                                  ${i}:00 ${am_pm}
                               </div>
                               <textarea class="col-md-10 description"></textarea>
                               <button class="btn saveBtn col-md-1"><i class="fas fa-save"></i></button>
                         </div>`;
     $(".container").append(timeBlock);
 }
+
 
   
   // Create a function to track the hour
@@ -97,7 +102,7 @@ $(document).ready(function () {
           $(this).find("textarea").attr("disabled", "disabled");
           $(this)
             .find("textarea")
-            .attr("placeholder", "Time has passed. This block is non-editable."); // diables blocks when time is past
+            .attr("placeholder", "Time has passed. This block is non-editable. Clear Planner to override."); // diables blocks when time is past
         }
       } else if (blockHour === currentHour) {
         $(this).removeClass("past");
