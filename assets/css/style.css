@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1;
 }
@@ -71,3 +71,22 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+.center-button {
+  text-align: center;
+}
+
+.clearBtn {
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+  font-size: 40px;
+  margin: 15px 0;
+}
+
+.clearBtn:hover {
+  color: black;
+  background-color: white;
+  border: #000000;
+  border-width: 5px;
+  border-style: solid;
+}
