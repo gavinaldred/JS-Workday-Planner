@@ -102,9 +102,8 @@ border-radius: 15px;
 
 
 .saveAllBtn:hover {
-  color: black;
-  background-color: white;
-  border: #000000;
+  color: white;
+  background-color: #06aed5;
   border-width: 5px;
   border-style: solid;
 }
