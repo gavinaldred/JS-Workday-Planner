@@ -52,7 +52,7 @@ for (let i = 8; i <= 17; i++) {
 }
 
 // Create a function to track the hour
-function hourTracker() {
+function timeTracker() {
   // Get the current number of hours
   let currentHour = moment().hour();
   // saves to local storage
@@ -82,7 +82,7 @@ function hourTracker() {
       .attr("placeholder", "");
   }
 
-  //reload the page
+  //reload the page // attached to a refresh page button
   function refreshPage() {
     location.reload();
   }
@@ -92,28 +92,32 @@ function hourTracker() {
     let blockHour = parseInt($(this).attr("id").replace("hour", ""));
 
     // Check if we've moved past current time
-    if (blockHour < currentHour) {
-      $(this).addClass("past");
-      $(this).removeClass("future");
-      $(this).removeClass("present");
-      let text = $(this).find("textarea").val();
-      if (!text) {
-        $(this).find("textarea").attr("disabled", "disabled");
-        $(this)
-          .find("textarea")
-          .attr(
-            "placeholder",
-            "Time has passed. This block is non-editable. Clear Planner to override."
-          ); // diables blocks when time is past
-      }
-    } else if (blockHour === currentHour) {
-      $(this).removeClass("past");
-      $(this).addClass("present");
-      $(this).removeClass("future");
-    } else {
-      $(this).removeClass("present");
-      $(this).removeClass("past");
-      $(this).addClass("future");
+    // Check if the time block is in the past
+if (blockHour < currentHour) {
+  $(this).addClass("past");
+  $(this).removeClass("future");
+  $(this).removeClass("present");
+  // Disable the textarea if it's empty
+  let text = $(this).find("textarea").val();
+  if (!text) {
+    $(this).find("textarea").attr("disabled", true);
+    $(this)
+      .find("textarea")
+      .attr("placeholder", "Time has passed. Non-editable.");
+  }
+} 
+// Check if the time block is the current hour
+else if (blockHour === currentHour) {
+  $(this).removeClass("past");
+  $(this).addClass("present");
+  $(this).removeClass("future");
+} 
+// Check if the time block is in the future
+else {
+  $(this).removeClass("present");
+  $(this).removeClass("past");
+  $(this).addClass("future");
+
     }
   });
 }
@@ -126,4 +130,4 @@ $(".saveAllBtn").on("click", function () {
   });
 });
 
-hourTracker(); // Re-run the function
+timeTracker(); // run the  function
