@@ -11,28 +11,28 @@ $(".saveBtn").on("click", function () {
 });
 
 // variables for planner time slots
-let hourEight = $("#hour8 .description");
-let hourNine = $("#hour9 .description");
-let hourTen = $("#hour10 .description");
-let hourEleven = $("#hour11 .description");
-let hourTwelve = $("#hour12 .description");
-let hourThirteen = $("#hour13 .description");
-let hourFourteen = $("#hour14 .description");
-let hourFifteen = $("#hour15 .description");
-let hourSixteen = $("#hour16 .description");
-let hourSeventeen = $("#hour17 .description");
+const eightAM = $("#hour8 .description");
+const nineAM = $("#hour9 .description");
+const tenAM = $("#hour10 .description");
+const elevenAM = $("#hour11 .description");
+const twelvePM = $("#hour12 .description");
+const thirteenPM = $("#hour13 .description");
+const fourteenPM = $("#hour14 .description");
+const fifteenPM = $("#hour15 .description");
+const sixteenPM = $("#hour16 .description");
+const seventeenPM = $("#hour17 .description");
 
 //gets the value of time slots from local storage if page reloadeded and there are vlaues
-hourEight.val(localStorage.getItem("hour8"));
-hourNine.val(localStorage.getItem("hour9"));
-hourTen.val(localStorage.getItem("hour10"));
-hourEleven.val(localStorage.getItem("hour11"));
-hourTwelve.val(localStorage.getItem("hour12"));
-hourThirteen.val(localStorage.getItem("hour13"));
-hourFourteen.val(localStorage.getItem("hour14"));
-hourFifteen.val(localStorage.getItem("hour15"));
-hourSixteen.val(localStorage.getItem("hour16"));
-hourSeventeen.val(localStorage.getItem("hour17"));
+eightAM.val(localStorage.getItem("hour8"));
+nineAM.val(localStorage.getItem("hour9"));
+tenAM.val(localStorage.getItem("hour10"));
+elevenAM.val(localStorage.getItem("hour11"));
+twelvePM.val(localStorage.getItem("hour12"));
+thirteenPM.val(localStorage.getItem("hour13"));
+fourteenPM.val(localStorage.getItem("hour14"));
+fifteenPM.val(localStorage.getItem("hour15"));
+sixteenPM.val(localStorage.getItem("hour16"));
+seventeenPM.val(localStorage.getItem("hour17"));
 
 // adds the time slots to the html
 for (let i = 8; i <= 17; i++) {
@@ -93,31 +93,30 @@ function timeTracker() {
 
     // Check if we've moved past current time
     // Check if the time block is in the past
-if (blockHour < currentHour) {
-  $(this).addClass("past");
-  $(this).removeClass("future");
-  $(this).removeClass("present");
-  // Disable the textarea if it's empty
-  let text = $(this).find("textarea").val();
-  if (!text) {
-    $(this).find("textarea").attr("disabled", true);
-    $(this)
-      .find("textarea")
-      .attr("placeholder", "Time has passed. Non-editable.");
-  }
-} 
-// Check if the time block is the current hour
-else if (blockHour === currentHour) {
-  $(this).removeClass("past");
-  $(this).addClass("present");
-  $(this).removeClass("future");
-} 
-// Check if the time block is in the future
-else {
-  $(this).removeClass("present");
-  $(this).removeClass("past");
-  $(this).addClass("future");
-
+    if (blockHour < currentHour) {
+      $(this).addClass("past");
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+      // Disable the textarea if it's empty
+      let text = $(this).find("textarea").val();
+      if (!text) {
+        $(this).find("textarea").attr("disabled", true);
+        $(this)
+          .find("textarea")
+          .attr("placeholder", "Time has passed. Non-editable.");
+      }
+    }
+    // Check if the time block is the current hour
+    else if (blockHour === currentHour) {
+      $(this).removeClass("past");
+      $(this).addClass("present");
+      $(this).removeClass("future");
+    }
+    // Check if the time block is in the future
+    else {
+      $(this).removeClass("present");
+      $(this).removeClass("past");
+      $(this).addClass("future");
     }
   });
 }
