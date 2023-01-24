@@ -54,7 +54,7 @@ for (let i = 8; i <= 17; i++) {
 // Create a function to track the hour
 function timeTracker() {
   // Get the current number of hours
-  let currentHour = moment().hour();
+  const currentHour = new Date().getHours();
   // saves to local storage
   $(".saveBtn").on("click", function () {
     let text = $(this).siblings("textarea").val();
